@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+// importing all the required libraries
+import React from "react";
+import { ReactNotifications } from "react-notifications-component";
+import {BrowserRouter, Route, Routes } from "react-router-dom";
 
+// importing all the required files
+import DashBoard from "./components/Dashboard/dashBoard";
+import Home from "./components/Home/Home";
+import Navbar from "./components/Navbar/Navbar";
+import "react-notifications-component/dist/theme.css";
+import HabitDetail from "./components/HabitDetails/HabitDetail";
+
+// creating up a App component
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+      <ReactNotifications />
+      <Navbar />
+      {/* adding up the routes */}
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route exact path="/dashboard" element={<DashBoard />} />
+        <Route
+          exact
+          path="/dashboard/habit/:id/detail"
+          element={<HabitDetail />}
+        />
+      </Routes>
+      </BrowserRouter>
     </div>
   );
 }
 
+// exporting the app by default
 export default App;
